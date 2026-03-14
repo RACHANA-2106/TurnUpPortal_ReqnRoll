@@ -9,6 +9,10 @@ namespace Reqnroll_TurnUPProject.Pages
 {
     public class TMPage
     {
+
+        private By clickonLastPaginationButton => By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]");
+        IWebElement lastPaginationButton;
+
         public void CreateTimeRecord(IWebDriver driver)
         {
             IWebElement createNew = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
@@ -39,53 +43,43 @@ namespace Reqnroll_TurnUPProject.Pages
 
             IWebElement save = driver.FindElement(By.Id("SaveButton"));
             save.Click();
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
+            Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]", 3);
 
-            IWebElement lastPaginationButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]"));
+            //IWebElement lastPaginationButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]"));
             lastPaginationButton.Click();
 
-            IWebElement newRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table[1]/tbody[1]/tr[last()]/td[1]"));
-
-            if (newRecord.Text == "Test-R1")
-            {
-                Assert.Pass("Time record created successfully!");
-            }
-            else
-            {
-                Assert.Fail("Time record creation failed.");
-
-            }
         }
-        //    public string GetCode(IWebDriver driver)
-        //{
-        //    IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-        //    return newCode.Text;
-        //}
-        //public string GetTypeCode(IWebDriver driver)
-        //{
-        //    IWebElement newTypeCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[2]"));
-        //    return newTypeCode.Text;
-        //}
+        public string GetCode(IWebDriver driver)
+        {
+            IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            return newCode.Text;
+        }
+        public string GetTypeCode(IWebDriver driver)
+        {
+            IWebElement newTypeCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[2]"));
+            return newTypeCode.Text;
+        }
 
-        //public string GetDescription(IWebDriver driver)
-        //{
-        //    IWebElement newDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
-        //    return newDescription.Text;
-        //}
+        public string GetDescription(IWebDriver driver)
+        {
+            IWebElement newDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+            return newDescription.Text;
+        }
 
-        //public string GetPrice(IWebDriver driver)
-        //{
-        //    IWebElement newPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
-        //    return newPrice.Text;
-        //}
-        
+        public string GetPrice(IWebDriver driver)
+        {
+            IWebElement newPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
+            return newPrice.Text;
+        }
 
-       
-        public void EditTimeRecord(IWebDriver driver, String code, String description, String price)
+
+
+        public void EditTimeRecord(IWebDriver driver, String code, String description)
         {
             Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]", 5);
 
-            IWebElement lastPaginationButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]"));
+            //IWebElement lastPaginationButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]"));
             lastPaginationButton.Click();
 
             Wait.WaitForElementToBeVisible(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]", 3);
@@ -113,33 +107,34 @@ namespace Reqnroll_TurnUPProject.Pages
 
             Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]", 3);
 
-            IWebElement lastPaginationButton2 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]"));
-            lastPaginationButton2.Click();
+            //IWebElement lastPaginationButton2 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span[1]"));
+            lastPaginationButton.Click();
+
 
         }
-        //public string GetEditedCode(IWebDriver driver)
-        //{
-        //    IWebElement editedCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-        //    return editedCode.Text;
-        //}
+        public string GetEditedCode(IWebDriver driver)
+        {
+            IWebElement editedCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            return editedCode.Text;
+        }
 
-        //public string GetEditedDescription(IWebDriver driver)
-        //{
-        //    IWebElement editedDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
-        //    return editedDescription.Text;
-        //}
-        //public string GetEditedPrice(IWebDriver driver)
-        //{
-        //    IWebElement editedPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
-        //    return editedPrice.Text;
-        //}
+        public string GetEditedDescription(IWebDriver driver)
+        {
+            IWebElement editedDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+            return editedDescription.Text;
+        }
+        public string GetEditedPrice(IWebDriver driver)
+        {
+            IWebElement editedPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
+            return editedPrice.Text;
+        }
         public void DeleteTimeRecord(IWebDriver driver)
         {
 
             Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 3);
 
-            IWebElement lastPageButton3 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-            lastPageButton3.Click();
+            //IWebElement lastPageButton3 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            lastPaginationButton.Click();
 
             Wait.WaitForElementToBeVisible(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]", 3);
 
@@ -148,16 +143,16 @@ namespace Reqnroll_TurnUPProject.Pages
 
             //Thread.Sleep(1500);
 
-   
             driver.SwitchTo().Alert().Accept();
 
             Thread.Sleep(3000);
 
             driver.Navigate().Refresh();
+
             Wait.WaitForElementToBeVisible(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 3);
 
-            IWebElement lastPageButton4 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-            lastPageButton4.Click();
+            //IWebElement lastPageButton4 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            lastPaginationButton.Click();
 
             Wait.WaitForElementToBeVisible(driver, "XPath", "//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]", 3);
 
@@ -165,13 +160,18 @@ namespace Reqnroll_TurnUPProject.Pages
 
             if (deletedCode.Text != "Test-R1 Edited")
             {
-                Console.WriteLine("Record deleted successfully");
+                Assert.Pass("Record deleted successfully");
             }
             else
             {
-                Console.WriteLine("Record has not been delete.");
+                Assert.Fail("Record has not been deleted.");
             }
 
+        }
+        public string GetDeletedCode(IWebDriver driver)
+        {
+            IWebElement deletedCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            return deletedCode.Text;
         }
 
     }

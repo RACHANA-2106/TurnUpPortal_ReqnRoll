@@ -11,8 +11,6 @@ namespace Reqnroll_TurnUPProject.Pages
         public void LoginActions(IWebDriver driver)
         {
 
-            
-
             driver.Navigate().GoToUrl("http://horse.industryconnect.io");
             driver.Manage().Window.Maximize();
             Thread.Sleep(1000);

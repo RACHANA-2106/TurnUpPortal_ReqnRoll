@@ -38,7 +38,7 @@ namespace Reqnroll_TurnUPProject.Tests
         {
             // Edit Time Record
             TMPage tmp = new TMPage();
-            tmp.EditTimeRecord(driver, "Test-R1 Edited", "Sample Test-R1 desc Updated", "60");
+            tmp.EditTimeRecord(driver, "Test-R1 Edited", "Sample Test-R1 desc Updated");
         }
         
         [Test]
