@@ -10,7 +10,7 @@ namespace Reqnroll_TurnUPProject.Pages
     {
         public void UserLoginConfirm(IWebDriver driver)
         {
-            
+
             IWebElement actualText = driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
             if (actualText.Text == "Hello hari!")
             {
@@ -39,8 +39,18 @@ namespace Reqnroll_TurnUPProject.Pages
         public void NavigatetoEmployeesPage(IWebDriver driver)
         {
             // Naviage to Employees Page
-            adminTab = driver.FindElement(clickOnAdminTab);
-            adminTab.Click();
+
+            try
+            {
+                adminTab = driver.FindElement(clickOnAdminTab);
+                adminTab.Click();
+            }
+            catch (StaleElementReferenceException e)
+            {
+
+                adminTab = driver.FindElement(clickOnAdminTab);
+                adminTab.Click();
+            }
 
             Wait.WaitForElementToBeClickable(driver, "XPath", "/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a", 3);
 

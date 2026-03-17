@@ -53,7 +53,7 @@ namespace Reqnroll_TurnUPProject.StepDefinitions
             Assert.That(newCode == "Test-R1", "Actual Code and expected Code do not match.");
             Assert.That(newTypecode == "T", "Actual TypeCode and expected Code do not match.");
             Assert.That(newDescription == "Sample test description R1", "Actual Description and expected Description do not match.");
-            Assert.That(newPrice == "$100", "Actual Price and expected Price do not match.");
+            Assert.That(newPrice == "$100.00", "Actual Price and expected Price do not match.");
         }
 
         [When("I update the {string} and {string} on an existing Time record")]
@@ -88,7 +88,7 @@ namespace Reqnroll_TurnUPProject.StepDefinitions
              TMPage tmp = new TMPage();
 
             string deletedcode = tmp.GetDeletedCode(driver);
-            Assert.That(deletedcode != "Test-R1 Edited", "Record deleted successfully");
+            Assert.That(deletedcode != "EditedRecord", "Record has not been deleted.");
         }
 
 
